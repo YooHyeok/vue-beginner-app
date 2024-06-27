@@ -120,3 +120,8 @@
   - \<script>  
     - HelloWorld컴포넌트를 import하고 components 옵션을 사용하여 등록한다.
     - `export default`를 통해 App이라는 name속성으로 Vue컴포넌트 객체를 내보낸다.
+
+# setup 함수
+CompositionAPI 방식으로 해당 컴포넌트 객체 내부에서 사용할 변수/함수 들을 setup 함수 내부에 선언하고, 반환한다.  
+반환된 데이터(변수/함수)는 template에서 사용이 가능하다.  
+(Vue 내부적으로 setup function을 호출하는것 같다)
