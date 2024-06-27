@@ -1,10 +1,22 @@
 <!-- 루트 컴포넌트 -->
 <template>
-  <!-- YooHyeok School -->
+
+  <div class="name">YooHyeok School</div> <!-- 문자열로 출력 -->
+
   <div class="name">
-    {{name}} <!-- Composition API 데이터 바인딩-->
+    {{ name }} <!-- Composition API 데이터 바인딩-->
   </div>
+
   <div>Vue3에서는 복수개의 엘리멘트를 하나의 빈 엘리먼트(태그)로 감싸지 않아도 된다.</div>
+
+  <div class="name">
+    {{ greeting(name) }} <!-- Composition API 함수 호출 및 바인딩-->
+  </div>
+
+  <div class="name">
+    {{ greet }} <!-- Composition API 바인딩-->
+  </div>
+  
 </template>
 
 <script>
@@ -19,10 +31,21 @@ export default {
    * {{ name }}
    */
   setup() {
-    const name = 'YooHyeok School1';
+    const name = 'YooHyeok School';
+
+    const greeting = (name) => {
+      return 'Hello, ' + name;
+    };
+
+    /**
+     * 함수 호출 및 반환값 변수 저장
+     */
+    const greet = greeting(name);
 
     return {
-      name
+      name,
+      greeting,
+      greet
     }
   }
 }
