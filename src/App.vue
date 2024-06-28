@@ -6,11 +6,18 @@
   <div class="name">
     {{ name }} <!-- Composition API 데이터 바인딩-->
   </div>
+
   <button 
     class="btn btn-primary"
     v-on:click="consoleLog"
   >
-      Click
+      console-log
+  </button>
+  <button 
+    class="btn btn-primary"
+    v-on:click="updateName"
+  >
+      update-name
   </button>
   <div>Vue3에서는 복수개의 엘리멘트를 하나의 빈 엘리먼트(태그)로 감싸지 않아도 된다.</div>
 
@@ -21,11 +28,15 @@
   <div class="name">
     {{ greet }} <!-- Composition API 바인딩-->
   </div>
+
+    <div class="name">
+    {{ nameRef }} <!-- ref 데이터 바인딩-->
+  </div>
   
 </template>
 
 <script>
-
+import {ref} from 'vue';
 export default {
  
   /**
@@ -36,7 +47,8 @@ export default {
    * {{ name }}
    */
   setup() {
-    const name = 'YooHyeok School';
+    let name = 'YooHyeok School';
+    const nameRef = ref('YooHyeok School');
 
     /**
      * name 문자열 조합 반환 함수 정의
@@ -56,12 +68,20 @@ export default {
     const consoleLog = () => {
       console.log('hello world');
     }
+    /**
+     * Click 이벤트 name 변경 함수
+     */
+    const updateName = () => {
+      nameRef.value = 'Codeaholic';
+    }
 
     return {
       name,
+      nameRef,
       greeting,
       greet,
-      consoleLog
+      consoleLog,
+      updateName
     }
   }
 }
