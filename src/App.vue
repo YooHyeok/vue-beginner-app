@@ -6,7 +6,12 @@
   <div class="name">
     {{ name }} <!-- Composition API 데이터 바인딩-->
   </div>
-
+  <button 
+    class="btn btn-primary"
+    v-on:click="consoleLog"
+  >
+      Click
+  </button>
   <div>Vue3에서는 복수개의 엘리멘트를 하나의 빈 엘리먼트(태그)로 감싸지 않아도 된다.</div>
 
   <div class="name">
@@ -33,6 +38,9 @@ export default {
   setup() {
     const name = 'YooHyeok School';
 
+    /**
+     * name 문자열 조합 반환 함수 정의
+     */
     const greeting = (name) => {
       return 'Hello, ' + name;
     };
@@ -42,10 +50,18 @@ export default {
      */
     const greet = greeting(name);
 
+    /**
+     * Click 이벤트 console출력 함수
+     */
+    const consoleLog = () => {
+      console.log('hello world');
+    }
+
     return {
       name,
       greeting,
-      greet
+      greet,
+      consoleLog
     }
   }
 }
