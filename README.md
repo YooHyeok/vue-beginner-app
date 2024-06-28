@@ -151,3 +151,58 @@ element에 `v-on:{이벤트명}="{함수명}"` 와 같이 속성을 지정해준
   }
 </script>
 ```
+
+
+<br>
+
+# *반응형 변수 ref 와 reactive*
+
+- *ref*
+일반적으로 ref 변수는 String, Object, Array에 대한 자료형 사용이 가능하다.  
+단, ref 내부 value에 접근하기 위해서는 변수명.value 를 통해 접근할 수 있다.  
+수정할 경우에 꼭 value를 통해 접근하고, 기본 자료형인 number 혹은 string의 경우 value에만 접근해서 바로 값을 변경할 수 있지만,  
+object 혹은 array의 경우 value에서 1depth 더 들어가야 한다.  
+
+- *reactive*
+배열 혹은 Object 자료형에 대해서만 사용이 가능하다.
+Object는 Key로 접근하고, 배열의 경우 변수명[index] 와 같이 index 를 통해 접근하여 수정이 가능하다.
+
+```html
+<script>
+import {reactive, ref} from 'vue';
+export default {
+  setup() {
+    const nameRef = ref('YooHyeok School');
+    const nameRefObj = ref({id: 1});
+    const nameReactive = reactive({
+      id : 1
+    });
+    const nameReactivePri = reactive(["hi","bye"]);
+
+    const updateNameRef = () => {
+      nameRef.value = 'Codeaholic';
+    }
+
+    const updateNameRefObj = () => {
+      nameRefObj.value.id = 'Codeaholic';
+    }
+    const updateNameReactive = () => {
+      nameReactive.id = 'Codeaholic';
+    }
+    const updateNameReactivePri = () => {
+      nameReactivePri[0] = 'Hello';
+    }
+    return {
+      nameRef,
+      nameRefObj,
+      nameReactive,
+      nameReactivePri,
+      updateNameRef,
+      updateNameRefObj,
+      updateNameReactive,
+      updateNameReactivePri
+    }
+  }
+}
+</script>
+```
