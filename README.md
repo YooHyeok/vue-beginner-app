@@ -121,7 +121,33 @@
     - HelloWorld컴포넌트를 import하고 components 옵션을 사용하여 등록한다.
     - `export default`를 통해 App이라는 name속성으로 Vue컴포넌트 객체를 내보낸다.
 
-# setup 함수
-CompositionAPI 방식으로 해당 컴포넌트 객체 내부에서 사용할 변수/함수 들을 setup 함수 내부에 선언하고, 반환한다.  
-반환된 데이터(변수/함수)는 template에서 사용이 가능하다.  
-(Vue 내부적으로 setup function을 호출하는것 같다)
+<br>
+
+# *`setup()` Function*
+**CompositionAPI** 방식의 초기화 함수  
+해당 컴포넌트 객체 내부에서 사용할 변수/함수 들을 setup 함수 내부에 선언하고, 반환한다.  
+반환된 데이터(변수/함수)는 template에서 사용이 가하다.  
+export default 영역에 선언하여 사용한다.  
+(Vue 내부적으로 setup function을 호출하는것 같다)  
+
+<br>
+
+# *Element의 Event 바인딩*
+element에 `v-on:{이벤트명}="{함수명}"` 와 같이 속성을 지정해준다  
+({중괄호는 생략})
+
+```html
+<template>
+  <button 
+    class="btn btn-primary"
+    v-on:click="consoleLog"
+  >
+      console-log
+  </button>
+</template>
+<script>
+  const consoleLog = () => {
+    console.log('hello world');
+  }
+</script>
+```
