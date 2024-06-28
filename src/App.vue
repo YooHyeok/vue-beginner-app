@@ -15,9 +15,27 @@
   </button>
   <button 
     class="btn btn-primary"
-    v-on:click="updateName"
+    v-on:click="updateNameRef"
   >
-      update-name
+  update-nameRef
+  </button>
+  <button 
+    class="btn btn-primary"
+    v-on:click="updateNameRefObj"
+  >
+  update-nameRefObj
+  </button>
+  <button 
+    class="btn btn-primary"
+    v-on:click="updateNameReactive"
+  >
+      update-nameReactive
+  </button>
+  <button 
+    class="btn btn-primary"
+    v-on:click="updateNameReactivePri"
+  >
+      update-nameReactivePri
   </button>
   <div>Vue3에서는 복수개의 엘리멘트를 하나의 빈 엘리먼트(태그)로 감싸지 않아도 된다.</div>
 
@@ -29,14 +47,23 @@
     {{ greet }} <!-- Composition API 바인딩-->
   </div>
 
-    <div class="name">
+  <div class="name">
     {{ nameRef }} <!-- ref 데이터 바인딩-->
+  </div>
+  <div class="name">
+    {{ nameRefObj }} <!-- ref 데이터 바인딩-->
+  </div>
+  <div class="name">
+    {{ nameReactive }} <!-- ref 데이터 바인딩-->
+  </div>
+  <div class="name">
+    {{ nameReactivePri }} <!-- ref 데이터 바인딩-->
   </div>
   
 </template>
 
 <script>
-import {ref} from 'vue';
+import {reactive, ref} from 'vue';
 export default {
  
   /**
@@ -48,7 +75,6 @@ export default {
    */
   setup() {
     let name = 'YooHyeok School';
-    const nameRef = ref('YooHyeok School');
 
     /**
      * name 문자열 조합 반환 함수 정의
@@ -68,20 +94,46 @@ export default {
     const consoleLog = () => {
       console.log('hello world');
     }
+
+    const nameRef = ref('YooHyeok School');
+    const nameRefObj = ref({id: 1});
+    
     /**
      * Click 이벤트 name 변경 함수
      */
-    const updateName = () => {
+    const updateNameRef = () => {
       nameRef.value = 'Codeaholic';
+    }
+
+    const updateNameRefObj = () => {
+      nameRefObj.value.id = 'Codeaholic';
+    }
+
+    const nameReactive = reactive({
+      id : 1
+    });
+    const nameReactivePri = reactive(["hi","bye"]);
+
+    const updateNameReactive = () => {
+      nameReactive.id = 'Codeaholic';
+    }
+    const updateNameReactivePri = () => {
+      nameReactivePri[0] = 'Hello';
     }
 
     return {
       name,
       nameRef,
+      nameRefObj,
+      nameReactive,
+      nameReactivePri,
       greeting,
       greet,
       consoleLog,
-      updateName
+      updateNameRef,
+      updateNameRefObj,
+      updateNameReactive,
+      updateNameReactivePri
     }
   }
 }
